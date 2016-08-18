@@ -33,7 +33,7 @@ data0 = i2c.readBytes(0x53, 0x32, 1)
 data1 = i2c.readBytes(0x53, 0x33, 1)
 
 # Convert the data to 10-bits
-xAccl = ((data1 & 0x03) * 256) + data0
+xAccl = ((data1[0] & 0x03) * 256) + data0[0]
 if xAccl > 511 :
 	xAccl -= 1024
 
@@ -44,7 +44,7 @@ data0 = i2c.readBytes(0x53, 0x34, 1)
 data1 = i2c.readBytes(0x53, 0x35, 1)
 
 # Convert the data to 10-bits
-yAccl = ((data1 & 0x03) * 256) + data0
+yAccl = ((data1[0] & 0x03) * 256) + data0[0]
 if yAccl > 511 :
 	yAccl -= 1024
 
@@ -55,7 +55,7 @@ data0 = i2c.readBytes(0x53, 0x36, 1)
 data1 = i2c.readBytes(0x53, 0x37, 1)
 
 # Convert the data to 10-bits
-zAccl = ((data1 & 0x03) * 256) + data0
+zAccl = ((data1[0] & 0x03) * 256) + data0[0]
 if zAccl > 511 :
 	zAccl -= 1024
 
