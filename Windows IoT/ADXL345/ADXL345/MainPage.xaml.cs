@@ -64,11 +64,11 @@ namespace ADXL345
             }
 
             /*
-				Initialize the accelerometer:
-				For this device, we create 2-byte write buffers:
-				The first byte is the register address we want to write to.
-				The second byte is the contents that we want to write to the register.
-			*/
+		Initialize the accelerometer:
+		For this device, we create 2-byte write buffers:
+		The first byte is the register address we want to write to.
+		The second byte is the contents that we want to write to the register.
+	    */
             byte[] WriteBuf_BandWRate = new byte[] { ACCEL_REG_BANDW_RATE, 0x0A };          //	0x0A sets Normal Mode and Output Data Rate = 100 Hz
             byte[] WriteBuf_DataFormat = new byte[] { ACCEL_REG_DATA_FORMAT, 0x08 };        //	0x08 sets range to +- 2Gs
             byte[] WriteBuf_PowerControl = new byte[] { ACCEL_REG_POWER_CONTROL, 0x08 };    //	0x08 puts the accelerometer into measurement mode
@@ -136,15 +136,15 @@ namespace ADXL345
             byte[] ReadBuf = new byte[6];                       //	We read 6 bytes sequentially to get all 3 two-byte axes registers in one read
 
             /*
-				Read from the accelerometer 
-				We call WriteRead() so we first write the address of the X-Axis I2C register, then read all 3 axes
-			*/
+		Read from the accelerometer 
+		We call WriteRead() so we first write the address of the X-Axis I2C register, then read all 3 axes
+	    */
             I2CAccel.WriteRead(RegAddrBuf, ReadBuf);
 
             /*
-				In order to get the raw 16-bit data values, we need to concatenate two 8-bit bytes from the I2C read for each axis.
-				We accomplish this by using the BitConverter class.
-			*/
+		In order to get the raw 16-bit data values, we need to concatenate two 8-bit bytes from the I2C read for each axis.
+		We accomplish this by using the BitConverter class.
+	    */
             short AccelRawX = BitConverter.ToInt16(ReadBuf, 0);
             short AccelRawY = BitConverter.ToInt16(ReadBuf, 2);
             short AccelRawZ = BitConverter.ToInt16(ReadBuf, 4);
@@ -158,4 +158,3 @@ namespace ADXL345
         }
     }
 }
-
